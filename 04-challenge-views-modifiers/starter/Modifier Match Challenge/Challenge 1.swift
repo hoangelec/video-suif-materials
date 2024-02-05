@@ -35,13 +35,23 @@ import SwiftUI
 struct Challenge_1: View {
   var body: some View {
     Image("monster")
+          .resizable()
+          .scaledToFit()
+//          .shadow(radius: 50)
+          .border(Color.green, width: 4)
+          .background(
+            Color.white
+                .shadow(radius: 30)
+          )
+          .padding()
+
   }
 }
 
 struct Challenge_1_Previews: PreviewProvider {
   static var previews: some View {
     Challenge_1()
-    
+
     Image("challenge 1")
       .resizable()
       .scaledToFill()
