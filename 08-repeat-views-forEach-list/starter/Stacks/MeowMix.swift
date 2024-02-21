@@ -33,7 +33,8 @@
 import Foundation
 import SwiftUI
 
-struct Track {
+struct Track: Identifiable {
+    let id = UUID()
   let title: String
   let artist: String
   let duration: String
@@ -55,6 +56,14 @@ struct MeowMix {
     Track(title: "Be a Safe Rider", artist: "Safe-T Rider", duration: "5:05"),
     Track(title: "Jellicle Songs For Jellicle Cats", artist: "Andrew Lloyd Webber & 'Cats' 1983 Broadway Cast", duration: "5:17"),
     Track(title: "Cat Scratch Fever", artist: "Ted Nugent", duration: "3:37"),
-    Track(title: "This Cat's On a Hot Tin Roof", artist: "The Brian Setzer Orchestra", duration: "2:55")
+    Track(title: "This Cat's On a Hot Tin Roof", artist: "The Brian 1", duration: "2:55"),
+    Track(title: "This Cat's On a Hot Tin Roof", artist: "The Brian 2", duration: "2:55"),
+    Track(title: "This Cat's On a Hot Tin Roof", artist: "The Brian 3", duration: "2:55"),
+    Track(title: "This Cat's On a Hot Tin Roof", artist: "The Brian 4", duration: "2:55"),
+    Track(title: "This Cat's On a Hot Tin Roof", artist: "The Brian 5", duration: "2:55"),
+    Track(title: "This Cat's On a Hot Tin Roof", artist: "The Brian 6", duration: "2:55"),
+    Track(title: "This Cat's On a Hot Tin Roof", artist: "The Brian 7", duration: "2:55"),
+    Track(title: "This Cat's On a Hot Tin Roof", artist: "The Brian 8", duration: "2:55"),
+    Track(title: "This Cat's On a Hot Tin Roof", artist: "The Brian 9", duration: "2:55"),
   ]
 }

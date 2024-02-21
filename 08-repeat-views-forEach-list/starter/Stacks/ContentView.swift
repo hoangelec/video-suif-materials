@@ -36,7 +36,7 @@ struct ContentView: View {
   let mix = MeowMix()
   
   var body: some View {
-    VStack {
+      VStack(spacing: 0) {
       MeowMixHeader()
         .padding()
       
@@ -44,8 +44,14 @@ struct ContentView: View {
         .padding()
       
       // Add a List of tracks
-      
+        List(mix.tracks) { track in
+            TrackRow(track: track)
+        }
+
       // Add FeaturedCats view
+        FeaturedCats(artists: mix.tracks.map { $0.artist })
+            .padding(.vertical)
+            .background(Color.gray.opacity(0.2))
     }
   }
 }
@@ -60,6 +66,13 @@ struct FeaturedCats: View {
         .padding(.leading)
       
       // Add a scrolling horiztonal list of featured artists
+        ScrollView(.horizontal) {
+            HStack(spacing: 10) {
+                ForEach(artists, id: \.self) {
+                    FeaturedArtist(artist: $0)
+                }
+            }
+        }
     }
   }
 }
