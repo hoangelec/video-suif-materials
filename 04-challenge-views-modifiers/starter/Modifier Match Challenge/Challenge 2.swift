@@ -33,21 +33,34 @@
 import SwiftUI
 
 struct Challenge_2: View {
-  var body: some View {
-    VStack {
-      Image(systemName: "sun.max.fill")
-        .renderingMode(.template)
-      
-      Text("Sunny")
+    var body: some View {
+        VStack {
+            Image(systemName: "sun.max.fill")
+                .renderingMode(.original)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 60, height: 60)
+                .padding(.top, 20)
+
+            Text("Sunny")
+                .font(.system(size: 40))
+                .fontWeight(.bold)
+                .foregroundStyle(Color.white)
+            Text("H: 61 L: 44")
+                .font(.system(size: 18))
+                .fontWeight(.light)
+                .foregroundStyle(Color.white)
+                .opacity(0.6)
+        }
+        .padding([.leading, .trailing, .bottom], 20)
+        .background(
+            LinearGradient(
+                gradient: Gradient(
+                    colors: [Color.white, Color.blue]),
+                startPoint: .topLeading, endPoint: .bottomTrailing
+            )
+        ).cornerRadius(15)
     }
-    .background(
-      LinearGradient(
-        gradient: Gradient(
-          colors: [Color.white, Color.blue]),
-        startPoint: .top, endPoint: .bottom
-      )
-    )
-  }
 }
 
 struct ContentView_Previews: PreviewProvider {

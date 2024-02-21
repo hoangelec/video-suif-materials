@@ -34,20 +34,87 @@ import SwiftUI
 
 struct ContentView: View {
   var body: some View {
-      VStack {
-        Text("Meow! Mix")
-          .font(.title)
-          .fontWeight(.semibold)
-        Text("Apple Music for Luna")
-          .font(.title)
-          .fontWeight(.light)
-          .foregroundColor(.accentColor)
-        Text("Updated Caturday")
-          .font(Font.system(.body).smallCaps())
-  
-        Text("Whether you're a kitten or an old-timer, get meowing with this purrsonalized mix of music to meow to!")
+
+      HStack {
+          Thumbnail()
+          VStack(alignment: .leading, spacing: 20) {
+
+              DescriptionView()
+              Text("Whether you're a kitten or an old-timer, get meowing with this purrsonalized mix of music to meow to!")
+              HStack(spacing: 10) {
+                  MyButton(title: "Play", systemImage: "play.fill")
+                  MyButton(title: "Shuffle", systemImage: "shuffle")
+              }
+          }
       }
   }
+}
+
+struct Thumbnail: View {
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+
+                .foregroundColor(.orange)
+            Image(systemName: "play.fill")
+                .resizable()
+                .foregroundColor(.white)
+                .opacity(0.5)
+
+                .frame(width: 50, height: 50)
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("Mewo!")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding(.horizontal)
+                    Spacer()
+                }
+
+                HStack {
+                    Text("Mix")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding(.horizontal)
+                    Spacer()
+                }
+
+                Spacer()
+            }
+
+
+        }
+        .aspectRatio(1, contentMode: .fit)
+        .padding()
+        .shadow(radius: 10)
+    }
+}
+
+
+struct MyButton: View {
+    let title: String
+    let systemImage: String
+    var body: some View {
+        HStack {
+            Button(
+              action: { print("Play") },
+              label: {
+                  HStack {
+                      Spacer()
+                      Label(title, systemImage: systemImage)
+                      Spacer()
+                  }
+
+              }
+            )
+            .padding(.vertical)
+            .foregroundColor(.orange)
+            .background(Color.gray.opacity(0.2))
+            .cornerRadius(12)
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -58,5 +125,24 @@ struct ContentView_Previews: PreviewProvider {
       .previewLayout(.sizeThatFits)
     
     ContentView()
+          .frame(maxHeight: 250)
+
+      Thumbnail()
   }
+}
+
+struct DescriptionView: View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Meow! Mix")
+                .font(.title)
+                .fontWeight(.semibold)
+            Text("Apple Music for Luna")
+                .font(.title)
+                .fontWeight(.light)
+                .foregroundColor(.accentColor)
+            Text("Updated Caturday")
+                .font(Font.system(.body).smallCaps())
+        }
+    }
 }
