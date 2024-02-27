@@ -45,7 +45,7 @@ struct ContentView: View {
                 ForEach(weather.hourlyForecast) {
                     WeatherItemView(forcast: $0)
                         .padding(.horizontal)
-                }   
+                }
             }
 
     }
