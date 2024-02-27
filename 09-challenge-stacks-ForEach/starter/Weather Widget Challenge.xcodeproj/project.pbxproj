@@ -11,6 +11,7 @@
 		0A333BF32569D41A00864AD5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A333BF22569D41A00864AD5 /* ContentView.swift */; };
 		0A333BF52569D41B00864AD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A333BF42569D41B00864AD5 /* Assets.xcassets */; };
 		0A333BF82569D41B00864AD5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A333BF72569D41B00864AD5 /* Preview Assets.xcassets */; };
+		5CD0CD652B86C14A00A174A0 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0CD642B86C14A00A174A0 /* Weather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		0A333BF42569D41B00864AD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A333BF72569D41B00864AD5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0A333BF92569D41B00864AD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5CD0CD642B86C14A00A174A0 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				0A333BF02569D41A00864AD5 /* Weather_Widget_ChallengeApp.swift */,
 				0A333BF22569D41A00864AD5 /* ContentView.swift */,
+				5CD0CD642B86C14A00A174A0 /* Weather.swift */,
 				0A333BF42569D41B00864AD5 /* Assets.xcassets */,
 				0A333BF92569D41B00864AD5 /* Info.plist */,
 				0A333BF62569D41B00864AD5 /* Preview Content */,
@@ -140,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A333BF32569D41A00864AD5 /* ContentView.swift in Sources */,
+				5CD0CD652B86C14A00A174A0 /* Weather.swift in Sources */,
 				0A333BF12569D41A00864AD5 /* Weather_Widget_ChallengeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -37,26 +37,17 @@ struct ContentView: View {
   
   var body: some View {
     VStack(alignment: .leading, spacing: 20.0) {
-      Text("Cupertino")
-        .font(.title3)
-      Text("63°")
-        .font(.largeTitle)
-      
-      Image(systemName: "sun.max.fill")
-        .renderingMode(.original)
-      
-      Text("Sunny")
-      Text("H:68° L:42°")
-      
+        WeatherHeaderView()
+
       Divider()
-      
-      Text(weather.hourlyForecast[0].hour)
-      
-      weather.hourlyForecast[0].conditions
-        .renderingMode(.original)
-        .frame(height: 50)
-      
-      Text(weather.hourlyForecast[0].temperature)
+
+            HStack {
+                ForEach(weather.hourlyForecast) {
+                    WeatherItemView(forcast: $0)
+                        .padding(.horizontal)
+                }   
+            }
+
     }
     .padding()
     .foregroundColor(.white)
@@ -66,30 +57,41 @@ struct ContentView: View {
   }
 }
 
-struct Weather {
-  struct Forecast {
-    let hour: String
-    let conditions: Image
-    let temperature: String
-  }
-  
-  let hourlyForecast = [
-    Forecast(hour: "8AM", conditions: Image(systemName: "sun.max.fill"), temperature: "63°"),
-    Forecast(hour: "9AM", conditions: Image(systemName: "cloud.sun.fill"), temperature: "63°"),
-    Forecast(hour: "10AM", conditions: Image(systemName: "sun.max.fill"), temperature: "64°"),
-    Forecast(hour: "11AM", conditions: Image(systemName: "cloud.fill"), temperature: "61°"),
-    Forecast(hour: "12PM", conditions: Image(systemName: "cloud.rain.fill"), temperature: "62°")
-  ]
+#Preview {
+    ContentView()
 }
 
-struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    Image("challenge")
-      .resizable()
-      .scaledToFit()
-      .previewLayout(.sizeThatFits)
-    
-    ContentView()
-      .previewLayout(.sizeThatFits)
-  }
+struct WeatherHeaderView: View {
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Cupertino")
+                    .font(.title3)
+                Text("63°")
+                    .font(.largeTitle)
+            }
+            Spacer()
+            VStack(alignment: .trailing) {
+                Image(systemName: "sun.max.fill")
+                    .renderingMode(.original)
+                Text("Sunny")
+                Text("H:68° L:42°")
+            }
+        }
+    }
+}
+
+struct WeatherItemView: View {
+    let forcast: Weather.Forecast
+    var body: some View {
+        VStack {
+            Text(forcast.hour)
+
+            forcast.conditions
+                .renderingMode(.original)
+                .frame(height: 50)
+            
+            Text(forcast.temperature)
+        }
+    }
 }
