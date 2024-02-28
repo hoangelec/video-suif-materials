@@ -36,14 +36,25 @@ import MapKit
 struct LocationMap: View {
   var artwork: Artwork
   @State var region = MKCoordinateRegion()
+    @Binding var showsModel: Bool
 
   var body: some View {
     VStack {
-      HStack {
-        Text(self.artwork.locationName)
-      }
-      .padding()
-      
+        ZStack {
+            HStack {
+              Spacer()
+              Text(self.artwork.locationName)
+                Spacer()
+            }
+            .padding()
+            HStack {
+              Spacer()
+                Button(action: { showsModel = false }, label: {
+                    /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
+                })
+            }
+            .padding()
+        }
       Map(coordinateRegion: $region, annotationItems: [artwork]) { artwork in
         MapMarker(coordinate: artwork.coordinate)
       }
@@ -56,6 +67,6 @@ struct LocationMap: View {
 
 struct LocationMap_Previews: PreviewProvider {
   static var previews: some View {
-    LocationMap(artwork: artData[0])
+      LocationMap(artwork: artData[0], showsModel: .constant(false))
   }
 }

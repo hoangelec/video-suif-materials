@@ -34,7 +34,8 @@ import SwiftUI
 
 struct DetailView: View {
   let artwork: Artwork
-  
+    @State var showsMap: Bool = false
+
   var body: some View {
     VStack {
       Text(artwork.title)
@@ -42,7 +43,9 @@ struct DetailView: View {
         .multilineTextAlignment(.center)
         .lineLimit(3)
       
-      Button(action: {  }) {
+        Button(action: { 
+            showsMap.toggle()
+        }) {
         HStack(alignment: .firstTextBaseline) {
           Image(systemName: "mappin.and.ellipse")
           
@@ -67,7 +70,9 @@ struct DetailView: View {
     }
     .padding()
     .navigationBarTitleDisplayMode(.inline)
-
+    .fullScreenCover(isPresented: $showsMap, content: {
+        LocationMap(artwork: artwork, showsModel: $showsMap)
+    })
   }
 }
 
