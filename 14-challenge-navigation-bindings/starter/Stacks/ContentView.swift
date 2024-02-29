@@ -43,32 +43,46 @@ import SwiftUI
 
 struct ContentView: View {
   let mix = MeowMix()
-  
-  var body: some View {
-// MARK: TODO - Add a NavigationView
-/*
-     * Try using the .navigationViewStyle modifier on the NavigationView with a StackNavigationViewStyle()
-     * Try hiding the navigation bar with .navigationBarHidden
-*/
-    VStack(spacing: 0.0) {
-      MeowMixHeader()
-        .padding()
-        .onTapGesture {
-          // trigger message popover here
+    @State var showsPopup = false
+
+    var body: some View {
+        // MARK: TODO - Add a NavigationView
+        /*
+         * Try using the .navigationViewStyle modifier on the NavigationView with a StackNavigationViewStyle()
+         * Try hiding the navigation bar with .navigationBarHidden
+         */
+        NavigationStack {
+            VStack(spacing: 0.0) {
+                MeowMixHeader()
+                    .padding()
+                    .onTapGesture {
+                        showsPopup = true
+                    }
+                    .sheet(isPresented: $showsPopup, content: {
+                        MessagePopover()
+                    })
+
+                Divider()
+                    .padding()
+
+                List(mix.tracks) { track in
+                    NavigationLink(value: track) {
+                        TrackRow(track: track)
+                    }
+                    .navigationDestination(for: Track.self) { track in
+                        DetailView(track: track)
+                    }
+                }
+
+                FeaturedCats(artists: mix.tracks.map(\.artist))
+                    .padding(.vertical)
+                    .background(Color.gray.opacity(0.2))
+            }
+//            .toolbar(.hidden)
+
+//            .navigationViewStyle(StackNavigationViewStyle())
         }
-      
-      Divider()
-        .padding()
-      
-      List(mix.tracks) { track in
-        TrackRow(track: track)
-      }
-      
-      FeaturedCats(artists: mix.tracks.map(\.artist))
-        .padding(.vertical)
-        .background(Color.gray.opacity(0.2))
     }
-  }
 }
 
 struct DetailView: View {
