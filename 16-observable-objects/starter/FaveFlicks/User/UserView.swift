@@ -31,10 +31,12 @@
 /// THE SOFTWARE.
 
 import SwiftUI
+import Combine
 
 struct UserView: View {
   @State private var userName = ""
   @State private var favoriteGenre = Genre.action
+  @ObservedObject var userStore: UserStore
 
   var body: some View {
     NavigationView {
@@ -54,16 +56,20 @@ struct UserView: View {
           Text("Update")
         }
     )
+    .onAppear {
+      userName = userStore.currentUserInfo.userName
+      favoriteGenre = userStore.currentUserInfo.favoriteGenre
+    }
   }
 
   func updateUserInfo() {
-//    let newUserInfo = UserInfo(userName: userName, favoriteGenre: favoriteGenre)
-//    userStore.currentUserInfo = newUserInfo
+    let newUserInfo = UserInfo(userName: userName, favoriteGenre: favoriteGenre)
+    userStore.currentUserInfo = newUserInfo
   }
 }
 
 struct UserView_Previews: PreviewProvider {
   static var previews: some View {
-    UserView()
+    UserView(userStore: UserStore())
   }
 }

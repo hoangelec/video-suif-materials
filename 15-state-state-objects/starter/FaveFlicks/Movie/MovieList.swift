@@ -33,7 +33,7 @@
 import SwiftUI
 
 struct MovieList: View {
-  var movieStore = MovieStore()
+  @StateObject var movieStore = MovieStore()
   @State private var isPresented = false
 
   var body: some View {
