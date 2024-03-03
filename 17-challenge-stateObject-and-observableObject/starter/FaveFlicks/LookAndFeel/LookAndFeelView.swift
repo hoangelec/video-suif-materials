@@ -41,18 +41,24 @@ struct LookAndFeelView: View {
   //TODO: reference the LookAndFeelStore here
   //TODO: You'll also need some @State properties here - views below need bindings
   
+  @Binding var lookAndFeelInfo: LookAndFeelInfo
+
+  @State var selectedColor = Color.red
+  @State var selectedSymbol = ""
+
   var body: some View {
     NavigationView {
       Form {
         Section("Accent Color") {
-          ColorPicker("Accent Color", selection: /*@START_MENU_TOKEN@*/.constant(.red)/*@END_MENU_TOKEN@*/)
+          ColorPicker("Accent Color", selection: $selectedColor)
         }
         Section("Rating Symbol") {
-          Picker(selection: /*@START_MENU_TOKEN@*/.constant(1)/*@END_MENU_TOKEN@*/, label: Text("Symbol")) {
+          Picker(selection: $selectedSymbol, label: Text("Symbol")) {
             ForEach(symbols, id: \.self) {
               Text($0)
             }
           }
+          .accentColor(selectedColor)
         }
       }
       .navigationBarTitle(Text("Look and Feel"), displayMode: .inline)
@@ -61,20 +67,27 @@ struct LookAndFeelView: View {
           Button(action: { updateLookAndFeelInfo() }
                 ) {
             Text("Update")
+                    .padding(.vertical)
           }
       )
     }
-    //TODO: like the UserView, be sure to update thing in onAppear
+    .onAppear {
+      selectedColor = lookAndFeelInfo.accentColor
+      selectedSymbol = lookAndFeelInfo.symbolName
+    }
+    .tint(selectedColor)
   }
-  
   
   func updateLookAndFeelInfo() {
     //TODO: update the store here
+    lookAndFeelInfo.accentColor = selectedColor
+    lookAndFeelInfo.symbolName = selectedSymbol
   }
 }
 
 struct LookAndFeelView_Previews: PreviewProvider {
+  
   static var previews: some View {
-    LookAndFeelView()
+    LookAndFeelView(lookAndFeelInfo: .constant(.init(accentColor: .blue, symbolName: "")))
   }
 }

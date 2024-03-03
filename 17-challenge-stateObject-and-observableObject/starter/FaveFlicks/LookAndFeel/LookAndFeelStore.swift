@@ -31,7 +31,16 @@
 /// THE SOFTWARE.
 
 import Combine
-
+import SwiftUI
 //TODO: Define a LookAndFeelStore class (what property wrapper should it have?)
 
+final class LookAndFeelStore: ObservableObject {
+  @Published var lookAndFeelInfo: LookAndFeelInfo = .init(accentColor: .green, symbolName: "star")
+}
+
 //TODO: Make a LookAndFeelInfo struct that has an accentColor property and a symbolName property that is a string
+
+struct LookAndFeelInfo {
+  var accentColor: Color
+  var symbolName: String
+}

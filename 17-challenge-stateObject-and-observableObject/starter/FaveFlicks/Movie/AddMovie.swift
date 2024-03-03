@@ -36,6 +36,7 @@ struct AddMovie: View {
   static let defaultMovieTitle = "An untitled masterpiece"
 
   let movieStore: MovieStore
+  let lookAndFeelStore: LookAndFeelStore
   @Binding var showModal: Bool
   @State private var title = ""
   @State private var genre = Genre.action
@@ -49,7 +50,7 @@ struct AddMovie: View {
         }
         Section(header: Text("Rating")) {
           Slider(value: $rating, in: 0...5, step: 0.5)
-          RatingView(rating: rating)
+          RatingView(rating: rating, icon: lookAndFeelStore.lookAndFeelInfo.symbolName)
         }
         Section(header: Text("Genre")) {
           GenrePicker(genre: $genre)

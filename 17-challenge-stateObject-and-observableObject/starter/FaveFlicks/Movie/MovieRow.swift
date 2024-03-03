@@ -34,6 +34,7 @@ import SwiftUI
 
 struct MovieRow: View {
   let movie: Movie
+  let lookAndFeelInfo: LookAndFeelInfo
 
   var body: some View {
     HStack(alignment: .firstTextBaseline) {
@@ -49,7 +50,7 @@ struct MovieRow: View {
       Spacer()
 
       VStack(alignment: .trailing) {
-        RatingView(rating: movie.rating)
+        RatingView(rating: movie.rating, icon: lookAndFeelInfo.symbolName)
       }
     }
   }

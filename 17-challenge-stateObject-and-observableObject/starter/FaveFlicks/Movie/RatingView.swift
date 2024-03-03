@@ -37,6 +37,7 @@ struct RatingView: View {
   //TODO: add a new property to reference the LookAndFeelStore
   
   let rating: Double
+  let icon: String
 
   var fullStarCount: Int {
     Int(rating / 1)
@@ -50,10 +51,10 @@ struct RatingView: View {
   var body: some View {
     HStack {
       ForEach(0..<fullStarCount, id: \.self) { _ in
-        Image(systemName: "star.fill")
+        Image(systemName: "\(icon).fill")
       }
       if hasHalfStar {
-        Image(systemName: "star.lefthalf.fill")
+        Image(systemName: "\(icon).lefthalf.fill")
       }
     }
     .foregroundColor(.accentColor)
@@ -62,6 +63,6 @@ struct RatingView: View {
 
 struct RatingView_Previews: PreviewProvider {
   static var previews: some View {
-    RatingView(rating: 4.5)
+    RatingView(rating: 4.5, icon: "star")
   }
 }
