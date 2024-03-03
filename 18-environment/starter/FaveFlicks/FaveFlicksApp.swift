@@ -37,6 +37,7 @@ struct FaveFlicksApp: App {
   var body: some Scene {
     WindowGroup {
       MovieList()
+        .environmentObject(UserStore())
     }
   }
 }

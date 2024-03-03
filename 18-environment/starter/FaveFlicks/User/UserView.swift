@@ -35,7 +35,7 @@ import SwiftUI
 struct UserView: View {
   @State private var userName = ""
   @State private var favoriteGenre = Genre.action
-  @ObservedObject var userStore: UserStore
+  @EnvironmentObject var userStore: UserStore
 
   var body: some View {
     NavigationView {
@@ -65,6 +65,7 @@ struct UserView: View {
 
 struct UserView_Previews: PreviewProvider {
   static var previews: some View {
-    UserView(userStore: UserStore())
+    UserView()
+      .environmentObject(UserStore())
   }
 }
