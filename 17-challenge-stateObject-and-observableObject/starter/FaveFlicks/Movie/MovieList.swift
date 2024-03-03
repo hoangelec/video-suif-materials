@@ -54,7 +54,7 @@ struct MovieList: View {
       }
       .sheet(isPresented: $isSettingPresented, content: {
         VStack {
-          LookAndFeelView(lookAndFeelInfo: $lookAndFeelStore.lookAndFeelInfo)
+          LookAndFeelView(lookAndFeelInfo: $lookAndFeelStore.lookAndFeelInfo, isPresented: $isSettingPresented)
         }
 
       })

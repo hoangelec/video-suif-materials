@@ -45,6 +45,7 @@ struct LookAndFeelView: View {
 
   @State var selectedColor = Color.red
   @State var selectedSymbol = ""
+  @Binding var isPresented: Bool
 
   var body: some View {
     NavigationView {
@@ -58,7 +59,9 @@ struct LookAndFeelView: View {
               Text($0)
             }
           }
-          .accentColor(selectedColor)
+          .tint(.white)
+          .colorMultiply(selectedColor)
+
         }
       }
       .navigationBarTitle(Text("Look and Feel"), displayMode: .inline)
@@ -82,12 +85,14 @@ struct LookAndFeelView: View {
     //TODO: update the store here
     lookAndFeelInfo.accentColor = selectedColor
     lookAndFeelInfo.symbolName = selectedSymbol
+
+    isPresented = false
   }
 }
 
 struct LookAndFeelView_Previews: PreviewProvider {
   
   static var previews: some View {
-    LookAndFeelView(lookAndFeelInfo: .constant(.init(accentColor: .blue, symbolName: "")))
+    LookAndFeelView(lookAndFeelInfo: .constant(.init(accentColor: .blue, symbolName: "")), isPresented: .constant(true))
   }
 }
